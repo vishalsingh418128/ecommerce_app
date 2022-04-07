@@ -52,7 +52,14 @@ class HomePageScreen extends GetView<HomePageController> {
     return Scaffold(
       key: scaffoldKey,
       appBar: AppBar(
-        actions: <Widget>[
+        leadingWidth: 20,
+        toolbarHeight: 80,
+        actions: <Widget>[  InkWell(
+            onTap: () {
+              Get.toNamed(Routes.loginScreen);
+            },
+            child:Icon(Icons.login_outlined, color: Colors.white,)
+        ),
           IconButton(
             icon: InkWell(
                 onTap: () {
@@ -65,7 +72,7 @@ class HomePageScreen extends GetView<HomePageController> {
         ],
         //<Widget>[]
 
-        elevation: 50.0,
+        elevation: 1.0,
         leading: IconButton(
           icon: const Icon(Icons.menu),
           tooltip: 'Menu Icon',
@@ -75,23 +82,31 @@ class HomePageScreen extends GetView<HomePageController> {
         ),
         backgroundColor: Colors.green,
         //IconButton
-
         title: Row(
           children: [
-            const Expanded(
-              child: Text(
-                'Fresh Shop',
-                style: TextStyle(color: Colors.white),
+            Expanded(
+              child: Column(
+                children: [
+
+                  SizedBox(
+                    height: 35,
+                    width: 399,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                            labelText: 'search all grocery',
+                            hintText: "fruit and vegetables",
+                            suffixIcon: const Icon(Icons.search),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10))),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.loginScreen);
-                },
-                child: const Text(
-                  'log in',
-                  style: TextStyle(color: Colors.yellowAccent),
-                )),
+
           ],
         ),
       ),
@@ -112,26 +127,26 @@ class HomePageScreen extends GetView<HomePageController> {
             onTap: () {
               Get.toNamed(Routes.profileScreen);
             },
-            child: ListTile(
+            child: const ListTile(
               leading: Icon(Icons.person),
               title: Text("My account"),
-              subtitle: Text("personal"),
+              subtitle: const Text("personal"),
             ),
           ),
-          ListTile(
+          const ListTile(
             leading: Icon(Icons.search),
             title: Text("Categories"),
             subtitle: Text("find"),
           ),
-          ListTile(
+          const ListTile(
             leading: Icon(Icons.menu_book_rounded),
             title: Text('Terms and conditions'),
           ),
-          ListTile(
-            leading: Icon(Icons.settings),
+          const ListTile(
+            leading: const Icon(Icons.settings),
             title: Text('Settings'),
           ),
-          ListTile(
+          const ListTile(
             leading: Icon(Icons.saved_search),
             title: Text('about us'),
           ),
@@ -140,22 +155,29 @@ class HomePageScreen extends GetView<HomePageController> {
       body: SingleChildScrollView(
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const SizedBox(
-          height: 10,
-        ),
-        SizedBox(
-          height: 55,
-          width: 390,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: TextFormField(
-              decoration: InputDecoration(
-                  labelText: 'search all grocery',
-                  hintText: "fruit and vegetables",
-                  suffixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10))),
-            ),
+
+        // SizedBox(
+        //   height: 55,
+        //   width: 390,
+        //   child: Padding(
+        //     padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        //     child: TextFormField(
+        //       decoration: InputDecoration(
+        //           labelText: 'search all grocery',
+        //           hintText: "fruit and vegetables",
+        //           suffixIcon: const Icon(Icons.search),
+        //           border: OutlineInputBorder(
+        //               borderRadius: BorderRadius.circular(10))),
+        //     ),
+        //   ),
+        // ),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: TextField(
+            decoration: const InputDecoration(
+                labelText: "location",
+                hintText: "enter your location",
+                suffixIcon: Icon(Icons.location_on)),
           ),
         ),
         SingleChildScrollView(
@@ -218,50 +240,30 @@ class HomePageScreen extends GetView<HomePageController> {
                   ),
                 ),
               ),
-              ScrollConfiguration(
-                behavior: MyBehavior(),
-                child: SingleChildScrollView(
-                  child: SizedBox(
-                    height: Get.height * .20,
-                    child: ListView.builder(
-                      itemBuilder: (BuildContext context, int index) {
-                        String banner = bannerList[index];
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                          child: Image.asset(
-                            banner,
-                            width: 399,
-                            height: 120,
-                          ),
-                        );
-                      },
-                      itemCount: bannerList.length,
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                    ),
-                  ),
-                ),
+              const Divider(
+                thickness: 2,
               ),
+
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
+        const Padding(
+          padding: EdgeInsets.all(8.0),
           child: Text(
             'Shop By Category',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Container(
           height: 280,
           width: 399,
-          padding: EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(10.0),
           child: GridView.builder(
             itemCount: gridimage.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3, crossAxisSpacing: 1.0, mainAxisSpacing: 1.0),
             itemBuilder: (BuildContext context, int index) {
               return Column(
@@ -269,6 +271,9 @@ class HomePageScreen extends GetView<HomePageController> {
               );
             },
           ),
+        ),
+        const Divider(
+          thickness: 2,
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -296,6 +301,9 @@ class HomePageScreen extends GetView<HomePageController> {
                   child: Image.asset('assets/banner1.png'),
                 ),
               ),
+              const Divider(
+                thickness: 2,
+              ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
@@ -311,64 +319,275 @@ class HomePageScreen extends GetView<HomePageController> {
           ),
         ),
         Image.asset('assets/fixed banner.png'),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(
-                    color: Colors.red,
-                    width: 2,
-                  ),
-                ),
-                height: 350,
-                width: 140,
-                child: Column(
-                  children: [
-                    ClipRRect(
-                        borderRadius: BorderRadius.circular(19),
-                        child: Image.asset('assets/add.png')),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        'BB Popular -Almond/badam',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.red,
+                        width: 2,
                       ),
                     ),
-                    Image.asset('assets/rateing.png'),
-                    EnhancedDropDown.withData(
-                      dropdownLabelTitle: "",
-                      defaultOptionText: "Select One",
-                      dataSource: const ["500gm -pouch", "1kg- pouch"],
-                      valueReturned: (quantity) {
-                        controller.selected.value = quantity;
-                        print(_selected);
-                      },
+                    width: 140,
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(19),
+                            child: Image.asset('assets/add.png')),
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'BB Popular -Almond/badam',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Image.asset('assets/rateing.png'),
+                        SizedBox(
+                          height: 70,
+                          child: EnhancedDropDown.withData(
+                            dropdownLabelTitle: "",
+                            defaultOptionText: "Select One",
+                            dataSource: const ["500gm -pouch", "1kg- pouch"],
+                            valueReturned: (quantity) {
+                              controller.selected.value = quantity;
+                              print(_selected);
+                            },
+                          ).marginZero,
+                        ),
+                        Obx(() => (controller.selected.value == "0")
+                            ? Container()
+                            : Text(
+                                (controller.selected.value == "1kg- pouch")
+                                    ? "750INR "
+                                    : "399INR",
+                              )),
+                        Container(
+                            height: 35,
+                            width: 100,
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Center(child: Text('ADD')))
+                      ],
                     ),
-                    Obx(() => (controller.selected.value == "0")
-                        ? SizedBox.shrink()
-                        : Text(
-                            (controller.selected.value == "1kg- pouch")
-                                ? "200 "
-                                : "100",
-                          )),
-                    Container(
-                        height: 35,
-                        width: 120,
-                        decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(child: const Text('ADD')))
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.red,
+                        width: 2,
+                      ),
+                    ),
+                    width: 140,
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(19),
+                            child: Image.asset('assets/add.png')),
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'BB Popular -Almond/badam',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Image.asset('assets/rateing.png'),
+                        SizedBox(
+                          height: 70,
+                          child: EnhancedDropDown.withData(
+                            dropdownLabelTitle: "",
+                            defaultOptionText: "Select One",
+                            dataSource: const ["500gm -pouch", "1kg- pouch"],
+                            valueReturned: (quantity) {
+                              controller.selected.value = quantity;
+                              print(_selected);
+                            },
+                          ).marginZero,
+                        ),
+                        Obx(() => (controller.selected.value == "0")
+                            ? Container()
+                            : Text(
+                                (controller.selected.value == "1kg- pouch")
+                                    ? "750INR "
+                                    : "399INR",
+                              )),
+                        Container(
+                            height: 35,
+                            width: 100,
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Center(child: Text('ADD')))
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.red,
+                        width: 2,
+                      ),
+                    ),
+                    width: 140,
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(19),
+                            child: Image.asset('assets/add.png')),
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'BB Popular -Almond/badam',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Image.asset('assets/rateing.png'),
+                        SizedBox(
+                          height: 70,
+                          child: EnhancedDropDown.withData(
+                            dropdownLabelTitle: "",
+                            defaultOptionText: "Select One",
+                            dataSource: const ["500gm -pouch", "1kg- pouch"],
+                            valueReturned: (quantity) {
+                              controller.selected.value = quantity;
+                              print(_selected);
+                            },
+                          ).marginZero,
+                        ),
+                        Obx(() => (controller.selected.value == "0")
+                            ? Container()
+                            : Text(
+                                (controller.selected.value == "1kg- pouch")
+                                    ? "750INR "
+                                    : "399INR",
+                              )),
+                        Container(
+                            height: 35,
+                            width: 100,
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Center(child: Text('ADD')))
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(
+                        color: Colors.red,
+                        width: 2,
+                      ),
+                    ),
+                    width: 140,
+                    child: Column(
+                      children: [
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(19),
+                            child: Image.asset('assets/add.png')),
+                        const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text(
+                            'BB Popular -Almond/badam',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Image.asset('assets/rateing.png'),
+                        SizedBox(
+                          height: 70,
+                          child: EnhancedDropDown.withData(
+                            dropdownLabelTitle: "",
+                            defaultOptionText: "Select One",
+                            dataSource: const ["500gm -pouch", "1kg- pouch"],
+                            valueReturned: (quantity) {
+                              controller.selected.value = quantity;
+                              print(_selected);
+                            },
+                          ).marginZero,
+                        ),
+                        Obx(() => (controller.selected.value == "0")
+                            ? Container()
+                            : Text(
+                                (controller.selected.value == "1kg- pouch")
+                                    ? "750INR "
+                                    : "399INR",
+                              )),
+                        Container(
+                            height: 35,
+                            width: 100,
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: const Center(child: Text('ADD')))
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
+        const Divider(
+          thickness: 3,
+        ),
+        Image.asset('assets/Screenshot 2022-04-07 at 3.49.23 PM.png'),
+        const Divider(
+          thickness: 3,
+        ),
+                ScrollConfiguration(
+                  behavior: MyBehavior(),
+                  child: SingleChildScrollView(
+                    child: SizedBox(
+                      height: Get.height * .20,
+                      child: ListView.builder(
+                        itemBuilder: (BuildContext context, int index) {
+                          String banner = bannerList[index];
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                            child: Image.asset(
+                              banner,
+                              width: 399,
+                              height: 120,
+                            ),
+                          );
+                        },
+                        itemCount: bannerList.length,
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                      ),
+                    ),
+                  ),
+                ),
       ])),
     );
   }

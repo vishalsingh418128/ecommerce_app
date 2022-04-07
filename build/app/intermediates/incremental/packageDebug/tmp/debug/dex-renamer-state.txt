@@ -1,4 +1,4 @@
-#Thu Apr 07 11:51:10 IST 2022
-base.0=/Users/vishalsingh/StudioProjects/ecommerce_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+#Thu Apr 07 15:34:11 IST 2022
+base.0=/Users/vishalsingh/Documents/ecommerce_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
 path.0=classes.dex
